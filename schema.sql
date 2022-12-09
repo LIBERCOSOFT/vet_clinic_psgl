@@ -29,3 +29,12 @@ ALTER TABLE animals ADD CONSTRAINT species_id FOREIGN KEY(species_id) REFERENCES
 ALTER TABLE owners DROP COLUMN id;
 ALTER TABLE owners ADD id SERIAL PRIMARY KEY;
 ALTER TABLE animals ADD owner_id INT, ADD CONSTRAINT owner_id FOREIGN KEY(owner_id) REFERENCES owners(id);
+
+-- Create a table named vets
+CREATE TABLE vets(id SERIAL PRIMARY KEY, name VARCHAR(50), age INT, date_of_graduation DATE);
+
+-- Create a "join table" called specializations to handle this relationship.
+CREATE TABLE specializations(species INT REFERENCES species(id), vets INT REFERENCES vets(id));
+
+-- Create a "join table" called visits to handle this relationship, it should also keep track of the date of the visit.
+CREATE TABLE visits (animals INT REFERENCES animals(id), vets INT REFERENCES vets(id), date_of_visit DATE);
