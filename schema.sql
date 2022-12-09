@@ -37,5 +37,4 @@ CREATE TABLE vets(id SERIAL PRIMARY KEY, name VARCHAR(50), age INT, date_of_grad
 CREATE TABLE specializations(species INT REFERENCES species(id), vets INT REFERENCES vets(id));
 
 -- Create a "join table" called visits to handle this relationship, it should also keep track of the date of the visit.
-CREATE TABLE visits (animals INT REFERENCES animals(id), vets INT REFERENCES vets(id));
-CREATE TABLE
+CREATE TABLE visits (animals INT REFERENCES animals(id), vets INT REFERENCES vets(id), date_of_visit DATE);
